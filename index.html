@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trafalgar D. Law - WhatsApp Bomber</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f, #1a1a2e);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-image: url('https://files.catbox.moe/ta4agk.jpg'); /* Image principale */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: -1;
+        }
+
+        .container {
+            background: rgba(20, 20, 30, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 30px;
+            padding: 40px 30px;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #00ff88;
+            box-shadow: 0 0 40px rgba(0,255,136,0.3);
+        }
+
+        h1 {
+            font-size: 2rem;
+            background: linear-gradient(45deg, #00ff88, #00b4d8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 10px 0 5px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 2px solid #2a2a3a;
+            background: #1a1a2e;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #00ff88;
+            box-shadow: 0 0 15px rgba(0,255,136,0.2);
+        }
+
+        .options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .color-picker, .bg-picker {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .color-picker label, .bg-picker label {
+            display: block;
+            color: #ccc;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .color-picker input[type="color"] {
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .bg-picker input[type="file"] {
+            width: 100%;
+            color: #fff;
+            background: #1a1a2e;
+            border: 2px solid #2a2a3a;
+            border-radius: 8px;
+            padding: 8px;
+        }
+
+        .premium-box {
+            background: linear-gradient(135deg, #2d1b69, #11998e);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px solid #00ff88;
+            box-shadow: 0 0 30px rgba(0,255,136,0.2);
+        }
+
+        .premium-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 6px;
+        }
+
+        .premium-box p {
+            color: #ddd;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #00ff88, #00b4d8);
+            color: #111;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            box-shadow: 0 8px 30px rgba(0,255,136,0.4);
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 40px rgba(0,255,136,0.6);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .status {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 12px;
+            background: rgba(0,0,0,0.3);
+            color: #0f0;
+            font-family: monospace;
+            text-align: center;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #777;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #00ff88;
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0,255,136,0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(0,255,136,0); }
+            100% { box-shadow: 0 0 0 0 rgba(0,255,136,0); }
+        }
+
+        .btn-attacking {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container { padding: 25px 15px; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="logo">
+            <img src="https://files.catbox.moe/ta4agk.jpg" alt="Trafalgar D. Law">
+        </div>
+        <h1>☠️ WhatsApp Bomber</h1>
+        <p class="subtitle">Système de bannissement massif • Propulsé par Trafalgar D. Law</p>
+
+        <form id="bomberForm">
+            <div class="input-group">
+                <label><i class="fas fa-phone-alt"></i> Numéro cible (format international)</label>
+                <input type="tel" id="targetPhone" placeholder="+33612345678" required>
+            </div>
+
+            <div class="input-group">
+                <label><i class="fas fa-rocket"></i> Nombre de SMS (max 5000)</label>
+                <input type="number" id="smsCount" value="1000" min="1" max="5000">
+            </div>
+
+            <div class="options">
+                <div class="color-picker">
+                    <label><i class="fas fa-palette"></i> Couleur du thème</label>
+                    <input type="color" id="themeColor" value="#00ff88">
+                </div>
+                <div class="bg-picker">
+                    <label><i class="fas fa-image"></i> Arrière-plan</label>
+                    <input type="file" id="bgImage" accept="image/*">
+                </div>
+            </div>
+
+            <div class="premium-box" id="premiumBox">
+                <h3>💎 Processus Premium</h3>
+                <p>Bannissement garanti en moins de 4h • Prioritaire • Logs en direct</p>
+                <p style="margin-top: 8px; font-size: 0.9rem; color: #ffdd57;">0.005 BTC • Paiement via chaine privée</p>
+                <button type="button" class="btn" style="background: linear-gradient(45deg, #ffd700, #ffaa00); color: #000;" onclick="activatePremium()">⚡ Activer Premium</button>
+            </div>
+
+            <button type="submit" class="btn" id="startBtn">
+                <i class="fas fa-bomb"></i> Lancer l'attaque
+            </button>
+        </form>
+
+        <div class="status" id="statusDisplay">⚙️ En attente du lancement...</div>
+
+        <div class="footer">
+            Besoin d'aide ? Contact <a href="https://t.me/Dev_Trafalgar" target="_blank">@Dev_Trafalgar</a> sur Telegram<br>
+            <span style="color: #555;">© 2025 Trafalgar D. Law • Tous droits réservés</span>
+        </div>
+    </div>
+
+    <script>
+        // Récupération des éléments
+        const form = document.getElementById('bomberForm');
+        const targetPhone = document.getElementById('targetPhone');
+        const smsCount = document.getElementById('smsCount');
+        const themeColor = document.getElementById('themeColor');
+        const bgImageInput = document.getElementById('bgImage');
+        const statusDisplay = document.getElementById('statusDisplay');
+        const startBtn = document.getElementById('startBtn');
+
+        // Changement de couleur du thème
+        themeColor.addEventListener('input', function() {
+            document.documentElement.style.setProperty('--theme-color', this.value);
+            // Met à jour les gradients et bordures
+            document.querySelectorAll('.btn, .logo img, .premium-box').forEach(el => {
+                el.style.borderColor = this.value;
+            });
+            // App store ?
+        });
+
+        // Changement d'image de fond
+        bgImageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    document.body.style.backgroundImage = `url('${evt.target.result}')`;
+                    document.body.style.backgroundSize = 'cover';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Activation Premium (animation)
+        function activatePremium() {
+            const box = document.getElementById('premiumBox');
+            box.style.borderColor = '#ffd700';
+            box.style.boxShadow = '0 0 50px rgba(255,215,0,0.5)';
+            statusDisplay.innerHTML = '💎 Mode Premium activé • Attaque prioritaire en file...';
+            setTimeout(() => {
+                statusDisplay.innerHTML = '✅ Premium confirmé • Tu es en tête de liste';
+            }, 2000);
+        }
+
+        // Soumission du formulaire
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const phone = targetPhone.value.trim();
+            const count = parseInt(smsCount.value) || 1000;
+
+            if (!phone.match(/^\+?[1-9]\d{6,14}$/)) {
+                statusDisplay.innerHTML = '❌ Numéro invalide. Format: +33612345678';
+                return;
+            }
+
+            if (count < 1 || count > 5000) {
+                statusDisplay.innerHTML = '❌ Nombre de SMS entre 1 et 5000.';
+                return;
+            }
+
+            // Désactiver le bouton
+            startBtn.disabled = true;
+            startBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Attaque en cours...';
+            startBtn.classList.add('btn-attacking');
+            statusDisplay.innerHTML = '🚀 Connexion au réseau Trafalgar...';
+
+            // Appel à l'API backend (endpoint à configurer)
+            try {
+                const response = await fetch('https://ton-backend.com/api/bomb', {  // Remplacer par l'URL de ton API
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phone: phone, count: count })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    let progress = 0;
+                    const interval = setInterval(() => {
+                        progress += Math.floor(count / 20);
+                        if (progress >= count) {
+                            clearInterval(interval);
+                            statusDisplay.innerHTML = `✅ Attaque terminée ! ${count} SMS envoyés à ${phone}. Le compte est signalé. Bannissement dans ~4h.`;
+                            startBtn.innerHTML = '<i class="fas fa-bomb"></i> Lancer l\'attaque';
+                            startBtn.disabled = false;
+                            startBtn.classList.remove('btn-attacking');
+                        } else {
+                            statusDisplay.innerHTML = `📨 Envoi en cours... ${progress}/${count} SMS`;
+                        }
+                    }, 300);
+                } else {
+                    statusDisplay.innerHTML = '❌ Erreur: ' + (data.error || 'Échec de l\'attaque');
+                    startBtn.innerHTML = '<i class="fas fa-bomb"></i> Lancer l\'attaque';
+                    startBtn.disabled = false;
+                    startBtn.classList.remove('btn-attacking');
+                }
+            } catch (error) {
+                statusDisplay.innerHTML = '⚠️ Impossible de contacter le serveur. Vérifie l\'API.';
+                startBtn.innerHTML = '<i class="fas fa-bomb"></i> Lancer l\'attaque';
+                startBtn.disabled = false;
+                startBtn.classList.remove('btn-attacking');
+            }
+        });
+    </script>
+</body>
+</html>
